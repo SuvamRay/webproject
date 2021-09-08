@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>link}}
+    {{>style}}
+    <style>
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            
+        }
+        img{
+            height: 700px;
+            width: 90%;
+
+        }
+        p{
+            text-align: justify;
+            color: red;
+            font-size: 20px;
+
+        }
+        .btn{
+            margin-left: 2px;
+            width: 30px;
+            height: 30px;
+            display: inline;
+            border: 2px solid rgb(227, 230, 80);
+            border-radius: 50%;
+            cursor: pointer;
+            float: right;
+
+        }
+        #blue{
+            background-color: rgb(10, 10, 243);
+        }
+        #yellowgreen{
+            background-color: rgb(157, 218, 36);
+        }
+        #gray{
+            background-color: rgb(161, 159, 159);
+        }
+        #black{
+            background-color: rgb(0, 0, 0);
+        }
+       @media (max-width: 500px) {
+            #p_text{
+                font-size: 17px;
+            }
+            
+        }
+
+    </style>
+</head>
+<body>
+    {{>header}}
+    <div id="colour">
+        <span class="btn" id="blue" onclick="changeBG('rgb(10, 10, 243)')"></span>
+        <span class="btn" id="yellowgreen" onclick="changeBG('rgb(157, 218, 36)')"></span>
+        <span class="btn" id="gray" onclick="changeBG('rgb(161, 159, 159)')"></span>
+        <span class="btn" id="black" onclick="changeBG('rgb(0, 0, 0)')"></span>
+    </div>
+    <h1 class="txt">Background Colour Changer</h1>
+    <div class="mx-auto">
+        <img src="images/bg_change.jpg" class="img-fluid w-100" alt="LOADING ERROR">
+    </div>
+    <p class="txt" id="p_text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ullam odio qui obcaecati alias. Mollitia ipsa atque cumque, unde veritatis numquam aperiam repellendus dolore quia iure dignissimos, aliquid, modi ratione quisquam molestias in. Porro velit debitis voluptates suscipit voluptatibus aliquam possimus consequuntur dolores neque ducimus aspernatur quibusdam fuga sequi dignissimos nesciunt vel sint quia, cupiditate repellat sit ea nihil eligendi eaque. Quae a molestias blanditiis autem sit ea sequi mollitia exercitationem, commodi quasi cum, culpa rerum aliquid facere, explicabo error expedita iusto necessitatibus quisquam velit! Tenetur soluta illo ipsa exercitationem animi aspernatur quaerat consequuntur, beatae, error libero ducimus numquam et quibusdam, incidunt magni! Ducimus aut tempore ex quas porro, numquam dolorum sequi rerum iste quam hic voluptas, possimus quo pariatur ipsa harum ut facilis delectus expedita perferendis voluptates explicabo veniam! Omnis voluptatum reprehenderit nostrum cumque laboriosam eos perferendis voluptas nisi vel accusantium labore quo perspiciatis beatae nobis similique, laudantium possimus autem officia sequi rerum! Ipsa, ad ut doloremque voluptatibus quasi ratione cupiditate impedit reiciendis maxime obcaecati nesciunt similique, quo quibusdam nihil ullam nobis aspernatur voluptas corrupti repellat nostrum! Voluptate, vero. In tempora natus autem eligendi neque doloremque at totam placeat culpa accusantium suscipit necessitatibus assumenda doloribus labore alias nobis, officia sapiente similique! Harum aspernatur nulla placeat odit vero voluptatibus quis totam aperiam autem obcaecati, quaerat, pariatur saepe qui sint error tenetur molestias, eius enim numquam consequuntur? Dolor modi similique explicabo porro, vitae maxime. Consequuntur molestias veritatis qui, praesentium odio doloribus atque aperiam beatae aut, quia odit voluptas nesciunt cupiditate eligendi blanditiis, ea eum explicabo totam provident et? Quod veritatis provident eos repellat, minus pariatur et, maiores corrupti iusto reprehenderit, doloribus cum velit consequuntur sed sapiente numquam nisi non. Neque repellendus ipsum, error accusamus a ab quos iste, atque voluptatum possimus itaque qui reprehenderit voluptas quia reiciendis eos, cumque ullam quibusdam.    
+    </p>
+    <script>
+        const changeBG=(colorBg)=>{
+            document.body.style.background=colorBg;
+            let txt=document.getElementsByClassName("txt");
+            if(colorBg == 'rgb(0, 0, 0)'){
+                for(let elm of txt){
+                    elm.style.color='rgb(243, 205, 205)';
+                }
+            }else if(colorBg == 'rgb(10, 10, 243)'){
+                for(let elm of txt){
+                   elm.style.color='red';
+                }
+            }else{
+            for(let elm of txt){
+                    elm.style.color='black';
+                }
+            }
+        }
+        
+    </script>
+    {{>footer}}
+</body>
+</html>

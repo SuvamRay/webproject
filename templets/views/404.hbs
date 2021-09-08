@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{>link}}
+  {{>style}}
+  <style>
+    body{
+      background-color: rgb(18, 18, 75) ;;
+    }
+    #text h1,#text h2{
+      color: red;
+    }
+  </style>
+  
+</head>
+<body background-image="url(https://images.unsplash.com/photo-1584824486516-0555a07fc511?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80)">
+  {{>header}}
+  <div class="mx-auto img-fluid mt-5">
+  <img src="images/banner_error_404.jpg" class="img-fluid" alt=""></div>
+  <div id="text">
+    <h1>opps page not found</h1>
+  <h2>404 error page</h2>
+  </div>
+  {{>footer}}
+</body>
+</html>

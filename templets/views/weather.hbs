@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>link}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/weather.css">
+</head>
+<body>
+    {{>header}}
+    {{!-- <div class="container-fluid mt-5">
+        <div><input type="search" name="" id=""><button></button></div>
+    </div> --}}
+    <h1 class="mx-auto">Weather App</h1>
+    
+    <div class="container-fluid mt-1">
+        <div class="row"> 
+            <div class="col-md-8 col-11 mx-auto">
+                <div class="box">
+                   <div id="search" class="mt-3">
+                        <span>
+                            <form action="">
+                                <input type="input" name="" value="" placeholder="enter your city name" id="search-s">
+                                <button id="btn-s"><i class="bi bi-search"></i></button>
+                            </form>
+                        </span>
+                    </div>
+                    <div class="wave w-one"></div>
+                    <div class="wave w-two"></div>
+                    <div class="wave w-three"></div>
+                    <div class="wave w-four"></div>
+                    <div class="w-icon">
+                        <h1 id="m-icon"><i class="fas fa-cloud" style="color:rgb(156, 167, 218)"></i></h1>
+                        <h3 id="weather"></h3>
+                    </div>
+                    <div class="content">
+                        <div class="icon">
+                            <h2>
+                                <i class="fas fa-user-alt" style="color:black"></i><h1 id="location"></h1>
+                            </h2>
+                        </div>
+                        <div class="d-t">
+                            <h4 id="date_time"></h4>
+                        </div>
+                        <br><br>
+                        <div class="temp mb-3">
+                            <h1 id="temp"></h1>
+                            <h4 id="temp-max"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{>footer}}
+    <script>
+        const date_time=document.getElementById("date_time");
+        const m_icon=document.getElementById("m-icon");
+
+       
+
+        const date=new Date().toLocaleDateString();
+        const time=new Date().toLocaleTimeString();
+        const arrDay=["sun","mon","tue","wed","thu","fri","sat"]
+        const day=new Date().getDay()
+        date_time.innerHTML=`${arrDay[day]} | ${date} | ${time}`;
+
+        const btn=document.getElementById("btn-s")
+        const searchh=document.getElementById("search-s")
+        const temp=document.getElementById('temp')
+        const temp_max=document.getElementById('temp-max')
+        const location_data=document.getElementById('location')
+        const weather=document.getElementById("weather")
+
+        const getInfo=async(event)=>{
+            location_data.innerHTML="loading";
+            event.preventDefault();
+            let place=searchh.value;
+             if(place==""){
+                location_data.innerHTML="please enter a city name"
+
+            }else{
+                try{
+                    let url=`https://api.openweathermap.org/data/2.5/weather?q=${place}&units=metric&appid=87d845b0b6cf29baa1a73cc34b067a95`
+                    const res=await fetch(url)
+                    const data=await res.json();
+                    const arrData=[data];
+                    temp.innerHTML=`${arrData[0].main.temp}°C`;
+                    temp_max.innerHTML=`${arrData[0].main.temp_max}°C | ${arrData[0].main.temp_min}°C`;
+                    location_data.innerHTML=`${arrData[0].name},${arrData[0].sys.country}`
+
+                    const temp_icon=arrData[0].weather[0].main;
+                    weather.innerHTML=temp_icon;
+
+                    if(temp_icon=="Clear"){
+                        m_icon.innerHTML=
+                            "<i class='fas fa-sun' style='color:#eccc68;'></i>"
+                    }else if(temp_icon=="Clouds"){
+                        m_icon.innerHTML=
+                            "<i class='fas fa-cloud' style='color:#f1f2f6;'></i>"
+                    }else if(temp_icon=="Rain"){
+                        m_icon.innerHTML=
+                            "<i class='fas fa-cloud-rain' style='color:#a4b0be;'></i>"
+                    }else {
+                        m_icon.innerHTML=
+                            "<i class='fas fa-cloud' style='color:rgb(156, 167, 218)'></i>"
+                    }
+
+                }catch{
+                    {{!-- location_data.innerHTML="please enter the name properly" --}}
+                }
+            }
+            
+           
+        }
+
+        btn.addEventListener('click',getInfo)
+        
+
+    </script>
+</body>
+</html>
